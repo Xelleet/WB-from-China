@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WB from China</title>
+    <style>
+        /* General container styling */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Spacing between items */
+    justify-content: center; /* Center items horizontally */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background */
+}
+
+/* Individual product styling */
+.product {
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    width: 300px; /* Fixed width */
+    max-height: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.product:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling */
+.item-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333; /* Dark text */
+    text-decoration: none; /* Remove underline */
+    margin-bottom: 10px;
+    display: block;
+}
+
+.item-title:hover {
+    color: #007BFF; /* Highlight color on hover */
+}
+
+/* Description styling */
+.item-description {
+    display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 250px;
+}
+
+/* Price styling */
+.item-price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #28a745; /* Green text for price */
+}
+.btn{
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    background-color: #e74c3c;
+}
+.product-image {
+    width: 30%;
+    height: 30%;
+    object-fit: fill;
+}
+    </style>
+</head>
+<body>
+    <h1>WB (not from China, promise 😇)</h1>
+    <div class="products">
+        {% for item in products %}
+            <div class="product">
+                <a class="item-title" href="{% url 'product' item.id %}">{{item.title}}</a>
+                <p class="item-description">{{item.description}}</p>
+                <img class="product-image" src="{{item.image.url}}">
+                <p class="item-price">{{item.price}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'cart' %}" class="btn">Move to cart</a>
+    <a href="{% url 'logout' %}" class="btn">Logout</a>
+</body>
+</html>

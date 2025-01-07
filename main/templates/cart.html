@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart {{user}}</title>
+    <style>
+        /* General styling for the product list */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Style each product item */
+.product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product {
+    display: flex;
+    gap: 20px;
+    width: 60%;
+    height: 60%;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Style for product title */
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+/* Style for product description */
+.product-description {
+   display: -webkit-box;
+   -webkit-line-clamp: 5;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* Style for remove link */
+.remove-link {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    height: 50%;
+    background-color: #dc3545;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-link:hover {
+    background-color: #c82333;
+}
+.remove-link-text{
+    text-align: center;
+}
+.product-description{
+    border: 5px solid red;
+    font-size: 18px;
+    color: white;
+}
+ img{
+ width: 10%;
+ height: 10%;
+ object-fit: cover;
+ }
+    </style>
+</head>
+<body>
+    {% for product in products %}
+        <div class="product">
+            <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
+            <p class="product-description">{{ product.description }}</p>
+            <img src="{{product.image.url}}" alt="product img">
+            <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text">Remove from cart</p></a>
+        </div>
+    {% endfor %}
+    <a href="{% url 'index' %}" class="remove-link"><p class="remove-link-text">Back</p></a>
+</body>
+</html>

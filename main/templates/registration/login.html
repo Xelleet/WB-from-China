@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Вход</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Войти</button>
+        {% if form.non_field_errors %}
+            <div style="color: red">
+                {% for error in form.non_field_errors %}
+                    <p>{{error}} </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </form>
+    <a href="{% url 'register' %}">Нету аккаунта?😂 Так уж и быть, может создать новый</a>
+</body>
+</html>

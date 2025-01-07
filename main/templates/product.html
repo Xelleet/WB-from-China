@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product.title}}</title>
+    <style>
+        /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Product Page Layout */
+.product-page {
+    display: flex;
+    gap: 20px;
+    width: 50%;
+    max-height: 70%;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Left Section: Image */
+.product-image-section {
+    flex: 1;
+    background-color: #000;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+/* Right Section: Details */
+.product-details-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Product Title */
+.product-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Rating and Reviews */
+.product-rating {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.rating {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.reviews {
+    color: #aaa;
+}
+
+/* Description */
+.product-description {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #ddd;
+    margin-bottom: 15px;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+/* Price */
+.product-price {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.current-price {
+    color: #ff4081;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* Buttons */
+.buy-button, .buy-now-button {
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #5848c2;
+}
+
+.buy-now-button {
+    background-color: #ff4081;
+}
+
+.buy-now-button:hover {
+    background-color: #d13668;
+}
+
+    </style>
+</head>
+<body>
+    <div class="product-page">
+        <!-- Left section: Product Image -->
+        <div class="product-image-section">
+            <img src="{{product.image.url}}" alt="product-img" class="product-image">
+        </div>
+
+        <!-- Right section: Product Details -->
+        <div class="product-details-section">
+            <h2 class="product-title">{{product.title}}</h2>
+            <h3 class="product-description">{{product.description}}</h3>
+            <div class="product-price">
+                <span class="current-price">{{product.price}}</span>
+            </div>
+            <a href="{% url 'add_to_cart' product.id %}"><button class="buy-button">Add to cart</button></a>
+            <a href="{% url 'index' %}"><button class="buy-button">Back</button></a>
+        </div>
+    </div>
+</body>
+</html>
