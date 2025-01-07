@@ -84,7 +84,7 @@ body {
 </head>
 <body>
     {% for product in products %}
-        <div class="product">
+        <div class="product"><!-- От -->
             <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
             <p class="product-description">{{ product.description }}</p>
             <img src="{{product.image.url}}" alt="product img">

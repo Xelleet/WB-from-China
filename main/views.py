@@ -32,7 +32,7 @@ def remove_from_cart(request, index):
     product = get_object_or_404(CartProduct, product=Product.objects.get(id=index))
     product.delete()
     return redirect('index')
-
+#
 def product(request, index):
     return render(request, 'product.html', {'product': Product.objects.get(id=index)})
 

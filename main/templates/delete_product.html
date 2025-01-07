@@ -66,7 +66,7 @@ form input[name="csrfmiddlewaretoken"] {
 <body>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}  <!-- Отображаем форму -->
+        {{ form.as_p }}  <!-- Отображаем форму f-->
         <button type="submit">Delete product</button>
     </form>
     <div class="products">
