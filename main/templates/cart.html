@@ -17,6 +17,7 @@
 /* Individual Cart Item */
 .cart-item {
     display: flex;
+<<<<<<< HEAD
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
@@ -25,6 +26,15 @@
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+=======
+    gap: 20px;
+    width: 60%;
+    height: 60%;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+>>>>>>> parent of 16142e5 (fixed a bug with the color of the product container in the shopping cart: now with a light and dark theme in the browser, everything will look good.)
 }
 
 .cart-item img {
@@ -47,6 +57,7 @@
 }
 
 .product-description {
+<<<<<<< HEAD
     font-size: 0.9rem;
     color: #666;
     margin: 0.5rem 0;
@@ -79,6 +90,13 @@
     font-weight: bold;
     color: #333;
     padding: 0 0.5rem;
+=======
+   display: -webkit-box;
+   -webkit-line-clamp: 5;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+>>>>>>> parent of 16142e5 (fixed a bug with the color of the product container in the shopping cart: now with a light and dark theme in the browser, everything will look good.)
 }
 
 /* Style for remove link */
@@ -128,7 +146,7 @@
         {% for product in products %}
             <div class="cart-item" data-product-id="{{ product.id }}" data-price="{{ product.price }}"><!-- От -->
                 <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
-                <p class="product-description" style="color: black;">{{ product.description }}</p>
+                <p class="product-description">{{ product.description }}</p>
                 <img src="{{product.image.url}}" alt="product img">
                 <div class="quantity-controls">
                     <button class="increase-quantity">+</button>
