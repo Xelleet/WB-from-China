@@ -28,7 +28,7 @@ body {
     gap: 20px;
     width: 60%;
     height: 60%;
-    background-color: #2a2a2a;
+    background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -49,6 +49,7 @@ body {
    -webkit-box-orient: vertical;
    overflow: hidden;
    text-overflow: ellipsis;
+   font-color: black;
 }
 
 /* Style for remove link */
@@ -119,7 +120,7 @@ body {
         {% for product in products %}
             <div class="cart-item" data-product-id="{{ product.id }}" data-price="{{ product.price }}"><!-- От -->
                 <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
-                <p class="product-description">{{ product.description }}</p>
+                <p class="product-description" style="color: black;">{{ product.description }}</p>
                 <img src="{{product.image.url}}" alt="product img">
                 <div class="quantity-controls">
                     <button class="increase-quantity">+</button>
