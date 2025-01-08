@@ -14,7 +14,7 @@ body {
 }
 
 /* Style each product item */
-.product {
+.cart-item {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
@@ -23,7 +23,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.product {
+.cart-item {
     display: flex;
     gap: 20px;
     width: 60%;
@@ -83,14 +83,73 @@ body {
     </style>
 </head>
 <body>
-    {% for product in products %}
-        <div class="product"><!-- От -->
-            <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
-            <p class="product-description">{{ product.description }}</p>
-            <img src="{{product.image.url}}" alt="product img">
-            <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text">Remove from cart</p></a>
-        </div>
-    {% endfor %}
-    <a href="{% url 'index' %}" class="remove-link"><p class="remove-link-text">Back</p></a>
+    <div class ='cart'>
+        {% for product in products %}
+            <div class="cart-item" data-product-id="{{ product.id }}" data-price="{{ product.price }}"><!-- От -->
+                <a href="{% url 'product' product.id %}"><p>{{ product.title }}</p></a>
+                <p class="product-description">{{ product.description }}</p>
+                <img src="{{product.image.url}}" alt="product img">
+                <div class="quantity-controls">
+                <button class="decrease-quantity">-</button>
+                <span class="quantity">1</span>
+                <button class="increase-quantity">+</button>
+                </div>
+                <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text">Remove from cart</p></a>
+            </div>
+        {% endfor %}
+        <a href="{% url 'index' %}" class="remove-link"><p class="remove-link-text">Back</p></a>
+        <p>Total Cost: $<span id="total-cost">0</span></p>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Script loaded"); // Debugging line
+        const cart = document.querySelector('.cart');
+        const totalCostElement = document.getElementById('total-cost');
+        let totalCost = 0;
+
+        // Initialize total cost
+        updateTotalCost();
+
+        // Handle clicks on increase/decrease buttons
+        cart.addEventListener('click', (event) => {
+            const button = event.target;
+
+            // Check if the clicked button is a quantity control
+            if (button.classList.contains('increase-quantity') || button.classList.contains('decrease-quantity')) {
+                const cartItem = button.closest('.cart-item');
+                const price = parseFloat(cartItem.dataset.price);
+                const quantityElement = cartItem.querySelector('.quantity');
+                let quantity = parseInt(quantityElement.textContent);
+
+                // Update quantity based on button type
+                if (button.classList.contains('increase-quantity')) {
+                    quantity++;
+                } else if (button.classList.contains('decrease-quantity') && quantity > 1) {
+                    quantity--;
+                }
+
+                // Update the quantity in the UI
+                quantityElement.textContent = quantity;
+
+                // Recalculate total cost
+                updateTotalCost();
+            }
+        });
+
+        // Function to update total cost
+        function updateTotalCost() {
+            totalCost = 0;
+            const cartItems = cart.querySelectorAll('.cart-item');
+
+            cartItems.forEach((item) => {
+                const price = parseFloat(item.dataset.price);
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                totalCost += price * quantity;
+            });
+
+            totalCostElement.textContent = totalCost.toFixed(2); // Format to 2 decimal places
+        }
+    });
+</script>
 </body>
 </html>
