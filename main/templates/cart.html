@@ -80,6 +80,38 @@ body {
  height: 10%;
  object-fit: cover;
  }
+        .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons and quantity */
+    margin-top: 10px;
+}
+
+.quantity-controls button {
+    background-color: #FF0B0B; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Button padding */
+    font-size: 16px; /* Text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+}
+
+.quantity-controls button:hover {
+    background-color: #BF0D0D; /* Slightly darker green on hover */
+}
+
+.quantity-controls button:active {
+    transform: scale(0.95); /* Slightly shrink button on click */
+}
+
+.quantity {
+    font-size: 18px; /* Larger font size for quantity */
+    font-weight: bold; /* Bold quantity text */
+    text-align: center; /* Center align the text */
+}
+
     </style>
 </head>
 <body>
@@ -90,9 +122,9 @@ body {
                 <p class="product-description">{{ product.description }}</p>
                 <img src="{{product.image.url}}" alt="product img">
                 <div class="quantity-controls">
-                <button class="decrease-quantity">-</button>
-                <span class="quantity">1</span>
-                <button class="increase-quantity">+</button>
+                    <button class="increase-quantity">+</button>
+                    <button class="decrease-quantity">-</button>
+                    <span class="quantity">1</span>
                 </div>
                 <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text">Remove from cart</p></a>
             </div>
