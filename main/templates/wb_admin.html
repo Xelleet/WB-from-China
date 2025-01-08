@@ -67,7 +67,7 @@ form input[name="csrfmiddlewaretoken"] {
 <body>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}  <!-- Отображаем формуg -->
+        {{ form.as_p }}  <!-- Отображаем форму -->
         <button type="submit">Add new product</button>
     </form>
 </body>
