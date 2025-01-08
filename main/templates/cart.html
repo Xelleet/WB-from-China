@@ -4,52 +4,81 @@
     <meta charset="UTF-8">
     <title>Cart {{user}}</title>
     <style>
-        /* General styling for the product list */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
+/* General Cart Styles */
+.cart {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 1rem;
     background-color: #f9f9f9;
-    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style each product item */
-.cart-item {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+/* Individual Cart Item */
 .cart-item {
     display: flex;
-    gap: 20px;
-    width: 60%;
-    height: 60%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Style for product title */
-.product-title {
-    font-size: 18px;
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.cart-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #007bff;
-    margin-bottom: 10px;
 }
 
-/* Style for product description */
+.cart-item a:hover {
+    color: #4CAF50;
+}
+
 .product-description {
-   display: -webkit-box;
-   -webkit-line-clamp: 5;
-   -webkit-box-orient: vertical;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   font-color: black;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.5rem 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Quantity Buttons */
+.quantity-controls button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.quantity-controls button:hover {
+    background-color: #45a049;
+}
+
+.quantity-controls .quantity {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    padding: 0 0.5rem;
 }
 
 /* Style for remove link */
@@ -71,46 +100,25 @@ body {
 .remove-link-text{
     text-align: center;
 }
-.product-description{
-    border: 5px solid red;
-    font-size: 18px;
+
+
+/* Back and Total Cost Section */
+.cart > a:last-of-type {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+    background-color: #f44336;
     color: white;
-}
- img{
- width: 10%;
- height: 10%;
- object-fit: cover;
- }
-        .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between buttons and quantity */
-    margin-top: 10px;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    width: fit-content;
+    transition: background-color 0.3s;
 }
 
-.quantity-controls button {
-    background-color: #FF0B0B; /* Green background */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 5px 10px; /* Button padding */
-    font-size: 16px; /* Text size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
-}
-
-.quantity-controls button:hover {
-    background-color: #BF0D0D; /* Slightly darker green on hover */
-}
-
-.quantity-controls button:active {
-    transform: scale(0.95); /* Slightly shrink button on click */
-}
-
-.quantity {
-    font-size: 18px; /* Larger font size for quantity */
-    font-weight: bold; /* Bold quantity text */
-    text-align: center; /* Center align the text */
+.cart > a:last-of-type:hover {
+    background-color: #e53935;
 }
 
     </style>
@@ -127,10 +135,10 @@ body {
                     <button class="decrease-quantity">-</button>
                     <span class="quantity">1</span>
                 </div>
-                <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text">Remove from cart</p></a>
+                <a href="{% url 'remove_from_cart' product.id %}" class="remove-link"><p class="remove-link-text" style="color: white;">Remove from cart</p></a>
             </div>
         {% endfor %}
-        <a href="{% url 'index' %}" class="remove-link"><p class="remove-link-text">Back</p></a>
+        <a href="{% url 'index' %}" class="remove-link"><p class="remove-link-text" style="color: white;">Back</p></a>
         <p>Total Cost: $<span id="total-cost">0</span></p>
     </div>
 <script>

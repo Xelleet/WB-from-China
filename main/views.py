@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, logout, login
 
 @login_required()
 def index(request):
-    return render(request, 'index.html', {'products': Product.objects.all()})
+    return render(request, 'index.html', {'products': Product.objects.all(), 'user': request.user})
 
 @login_required()
 def cart(request):
@@ -21,6 +21,9 @@ def add_to_cart(request, index):
         return redirect('login_user')
 
     product = get_object_or_404(Product, id=index)
+
+    if CartProduct.objects.filter(user=request.user, product=product).exists():
+        return redirect('product', index)
 
     # Add the product to the cart for the logged-in user
     cart_product = CartProduct(user=request.user, product=product)

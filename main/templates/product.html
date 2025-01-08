@@ -8,8 +8,7 @@
         /* General Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #1e1e1e;
-    color: #fff;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,7 +23,6 @@ body {
     gap: 20px;
     width: 50%;
     max-height: 70%;
-    background-color: #2a2a2a;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -90,7 +88,7 @@ body {
 }
 
 .current-price {
-    color: #ff4081;
+    color: #E50E0E;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -102,7 +100,7 @@ body {
 
 /* Buttons */
 .buy-button, .buy-now-button {
-    background-color: #6c63ff;
+    background-color: green;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -114,7 +112,7 @@ body {
 }
 
 .buy-button:hover {
-    background-color: #5848c2;
+    background-color: darkgreen;
 }
 
 .buy-now-button {
@@ -137,7 +135,7 @@ body {
         <!-- Right section: Product Detail -->
         <div class="product-details-section">
             <h2 class="product-title">{{product.title}}</h2>
-            <h3 class="product-description">{{product.description}}</h3>
+            <h3 class="product-description" style="color: black;">{{product.description}}</h3>
             <div class="product-price">
                 <span class="current-price">{{product.price}}</span>
             </div>
